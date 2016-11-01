@@ -147,55 +147,55 @@ class StravistiX {
         };
 
         // Check for previous version is installed
-        Helper.getFromStorage(this.extensionId, StorageManager.storageLocalType, 'versionInstalled', (response: any) => {
+        // Helper.getFromStorage(this.extensionId, StorageManager.storageLocalType, 'versionInstalled', (response: any) => {
 
-            if (!response.data || !response.data.version) {
+        //     if (!response.data || !response.data.version) {
 
-                // No previous version installed. It's an install of the plugin
-                console.log("No previous version found. Should be an fresh install of " + this.appResources.extVersion);
+        //         // No previous version installed. It's an install of the plugin
+        //         console.log("No previous version found. Should be an fresh install of " + this.appResources.extVersion);
 
-                // Display ribbon update message
-                this.handleUpdatePopup();
+        //         // Display ribbon update message
+        //         this.handleUpdatePopup();
 
-                // Save current version to chrome local storage
-                saveCurrentVersionInstalled(() => {
-                });
+        //         // Save current version to chrome local storage
+        //         saveCurrentVersionInstalled(() => {
+        //         });
 
-            } else {
+        //     } else {
 
-                // A version is already installed. It's an update
-                if (response.data.version && response.data.version !== this.appResources.extVersion) {
+        //         // A version is already installed. It's an update
+        //         if (response.data.version && response.data.version !== this.appResources.extVersion) {
 
-                    // Version has changed...
-                    console.log("Previous install found <" + response.data.version + "> installed on " + new Date(response.data.on));
-                    console.log("Moving to version <" + this.appResources.extVersion + ">");
+        //             // Version has changed...
+        //             console.log("Previous install found <" + response.data.version + "> installed on " + new Date(response.data.on));
+        //             console.log("Moving to version <" + this.appResources.extVersion + ">");
 
-                    // Clear HTML5 local storage
-                    console.log("Plugin upgraded, clear browser local storage");
-                    localStorage.clear();
+        //             // Clear HTML5 local storage
+        //             console.log("Plugin upgraded, clear browser local storage");
+        //             localStorage.clear();
 
-                    // Display ribbon update message
-                    this.handleUpdatePopup();
+        //             // Display ribbon update message
+        //             this.handleUpdatePopup();
 
-                    // Save current version to chrome local storage
-                    saveCurrentVersionInstalled(() => {
-                    });
+        //             // Save current version to chrome local storage
+        //             saveCurrentVersionInstalled(() => {
+        //             });
 
-                    // Send updated version info to
-                    let updatedToEvent: any = {
-                        categorie: 'Exploitation',
-                        action: 'updatedVersion',
-                        name: this.appResources.extVersion
-                    };
+        //             // Send updated version info to
+        //             let updatedToEvent: any = {
+        //                 categorie: 'Exploitation',
+        //                 action: 'updatedVersion',
+        //                 name: this.appResources.extVersion
+        //             };
 
-                    follow('send', 'event', updatedToEvent.categorie, updatedToEvent.action, updatedToEvent.name);
+        //             follow('send', 'event', updatedToEvent.categorie, updatedToEvent.action, updatedToEvent.name);
 
-                } else {
-                    console.log("No install or update detected");
-                }
+        //         } else {
+        //             console.log("No install or update detected");
+        //         }
 
-            }
-        });
+        //     }
+        // });
     }
 
     /**
@@ -826,19 +826,19 @@ class StravistiX {
         if (env.debugMode) console.log("Execute handleActivityBestSplits()");
 
         // TODO Implement cache here: get stream from cache if exist
-        this.vacuumProcessor.getActivityStream((activityCommonStats: any, jsonResponse: any, athleteWeight: number, hasPowerMeter: boolean) => {
+        // this.vacuumProcessor.getActivityStream((activityCommonStats: any, jsonResponse: any, athleteWeight: number, hasPowerMeter: boolean) => {
 
-            Helper.getFromStorage(this.extensionId, StorageManager.storageSyncType, 'bestSplitsConfiguration', (response: any) => {
+        //     Helper.getFromStorage(this.extensionId, StorageManager.storageSyncType, 'bestSplitsConfiguration', (response: any) => {
 
-                let activityBestSplitsModifier: ActivityBestSplitsModifier = new ActivityBestSplitsModifier(this.activityId, this._userSettings, jsonResponse, hasPowerMeter, response.data, (splitsConfiguration: any) => {
-                    Helper.setToStorage(this.extensionId, StorageManager.storageSyncType, 'bestSplitsConfiguration', splitsConfiguration);
-                });
+        //         let activityBestSplitsModifier: ActivityBestSplitsModifier = new ActivityBestSplitsModifier(this.activityId, this._userSettings, jsonResponse, hasPowerMeter, response.data, (splitsConfiguration: any) => {
+        //             Helper.setToStorage(this.extensionId, StorageManager.storageSyncType, 'bestSplitsConfiguration', splitsConfiguration);
+        //         });
 
-                activityBestSplitsModifier.modify();
+        //         activityBestSplitsModifier.modify();
 
-            });
+        //     });
 
-        });
+        // });
     }
 
     /**

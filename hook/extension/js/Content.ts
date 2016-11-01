@@ -56,7 +56,7 @@ class Content {
 
         this.loadDependencies(() => {
 
-            chrome.storage.sync.get(this.userSettings, (chromeSettings: any) => {
+            // chrome.storage.sync.get(this.userSettings, (chromeSettings: any) => {
 
                 let node: HTMLElement = (document.head || document.documentElement);
 
@@ -68,9 +68,9 @@ class Content {
 
                     let inner: HTMLScriptElement = document.createElement('script');
 
-                    if (_.isEmpty(chromeSettings)) { // If settings from chrome sync storage are empty
-                        chromeSettings = this.userSettings;
-                    }
+                    // if (_.isEmpty(chromeSettings)) { // If settings from chrome sync storage are empty
+                        let chromeSettings = this.userSettings;
+                    // }
 
                     inner.textContent = 'var $ = jQuery;';
                     inner.textContent += 'var stravistiX = new StravistiX(' + JSON.stringify(chromeSettings) + ', ' + JSON.stringify(this.appResources) + ');';
@@ -81,7 +81,7 @@ class Content {
                     node.appendChild(inner);
                 };
                 node.appendChild(injectedScript);
-            });
+            // });
 
         });
     }

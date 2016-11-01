@@ -4,7 +4,7 @@ import Tab = chrome.tabs.Tab;
 class Background {
 
     public init(): void {
-        this.listenForExternalMessages();
+        // this.listenForExternalMessages();
         this.listenInstallUpdate();
     }
 
